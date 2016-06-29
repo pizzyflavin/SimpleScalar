@@ -128,6 +128,8 @@ static int comb_nelt = 1;
 static int comb_config[1] =
   { /* meta_table_size */1024 };
 
+/* lab4 predictor config (<met_table_)
+
 /* return address stack (RAS) size */
 static int ras_size = 8;
 
@@ -652,7 +654,8 @@ sim_reg_options(struct opt_odb_t *odb)
 "      PAp     : N, W, M (M == 2^(N+W)), 0\n"
 "      gshare  : 1, W, 2^W, 1\n"
 "  Predictor `comb' combines a bimodal and a 2-level predictor.\n"
-"  Predictor 'lab4' combines a 2-bit bimodal and a 1-bit bimodal predictor.\n"
+"  Predictor 'lab4' combines two bimodal predictors with different"
+"             table sizes.\n"
                );
 
   opt_reg_string(odb, "-bpred",
