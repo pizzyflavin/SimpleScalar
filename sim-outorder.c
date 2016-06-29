@@ -652,6 +652,7 @@ sim_reg_options(struct opt_odb_t *odb)
 "      PAp     : N, W, M (M == 2^(N+W)), 0\n"
 "      gshare  : 1, W, 2^W, 1\n"
 "  Predictor `comb' combines a bimodal and a 2-level predictor.\n"
+"  Predictor 'lab4' combines a 2-bit bimodal and a 1-bit bimodal predictor.\n"
                );
 
   opt_reg_string(odb, "-bpred",
@@ -677,6 +678,12 @@ sim_reg_options(struct opt_odb_t *odb)
 		   comb_config, comb_nelt, &comb_nelt,
 		   /* default */comb_config,
 		   /* print */TRUE, /* format */NULL, /* !accrue */FALSE);
+
+  opt_reg_int_list(odb, "-bpred:lab4",
+                   "lab4 predictor config (<meta_table_size>)",
+                   lab4_config, lab4_nelt, &lab4_nelt,
+     /* default */ lab4_config,
+       /* print */ TRUE, /* format */ NULL, /* !accrue */ FALSE);
 
   opt_reg_int(odb, "-bpred:ras",
               "return address stack size (0 for no return stack)",
