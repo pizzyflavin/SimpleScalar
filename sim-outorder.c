@@ -658,7 +658,7 @@ sim_reg_options(struct opt_odb_t *odb)
 "      gshare  : 1, W, 2^W, 1\n"
 "  Predictor `comb' combines a bimodal and a 2-level predictor.\n"
 "  Predictor 'lab4' combines two bimodal predictors with different"
-"             table sizes.\n"
+             "table sizes.\n"
                );
 
   opt_reg_string(odb, "-bpred",
