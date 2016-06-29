@@ -59,6 +59,9 @@
 #include "machine.h"
 #include "bpred.h"
 
+/* Global variables */
+static bpred_class g_class;
+
 /* turn this on to enable the SimpleScalar 2.0 RAS bug */
 /* #define RAS_BUG_COMPATIBLE */
 
