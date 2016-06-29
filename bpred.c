@@ -975,6 +975,13 @@ bpred_update(struct bpred_t *pred,	/* branch predictor instance */
 	    }
 	}
     }
+/*************************************************************************************************/
+   if (dir_update_lab4->pmeta)
+     {
+       if (dir_update_ptr->dir.bimod != dir_update_ptr->dir.bimod
+     }
+
+/*************************************************************************************************/
 
   /* update BTB (but only for taken branches) */
   if (pbtb)
