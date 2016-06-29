@@ -978,7 +978,19 @@ bpred_update(struct bpred_t *pred,	/* branch predictor instance */
 /*************************************************************************************************/
    if (dir_update_lab4->pmeta)
      {
-       if (dir_update_ptr->dir.bimod != dir_update_ptr->dir.bimod
+       if (dir_update_ptr->dir.bimod != dir_update_ptr->dir.bimod2)
+	 {
+	   if ( dir_update_ptr->.bimod2 == (unsigned int)taken)
+             {
+		if (*dir_update_ptr->pmeta < 3)
+		  ++*dir_update_ptr->pmeta;
+	     }
+           else 
+	     {
+		if (*dir_update_ptr->pmeta > 0)
+		  --*dir_update_ptr->pmeta;
+             }
+         }
      }
 
 /*************************************************************************************************/
