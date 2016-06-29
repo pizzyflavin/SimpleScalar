@@ -59,9 +59,6 @@
 #include "machine.h"
 #include "bpred.h"
 
-/* Global variables */
-static bpred_class g_class;
-
 /* turn this on to enable the SimpleScalar 2.0 RAS bug */
 /* #define RAS_BUG_COMPATIBLE */
 
@@ -960,24 +957,55 @@ bpred_update(struct bpred_t *pred,	/* branch predictor instance */
 
   /* meta predictor */
   if (dir_update_ptr->pmeta)
+  {
+    /* Lab4 Predictor */
+    if (pred->class == BPred_lab4)
+    {
+
+
+      /* Ryan Foley */
+      /***********************************************************/
+      if (dir_update_ptr->dir.bimod != dir_update_ptr->dir.twolev)
+      {
+    /* we only update meta predictor if directions were different */
+        if (dir_update_ptr->dir.twolev == (unsigned int)taken)
+        {
+          /* 2-level predictor was correct */
+          if (*dir_update_ptr->pmeta < 3)
+            ++*dir_update_ptr->pmeta;
+        }
+        else
+        {
+          /* bimodal predictor was correct */
+          if (*dir_update_ptr->pmeta > 0)
+            --*dir_update_ptr->pmeta;
+        }
+      }
+      /***********************************************************/
+
+
+    }
+    /* Normal Comb Predictor */
+    else
     {
       if (dir_update_ptr->dir.bimod != dir_update_ptr->dir.twolev)
-	{
-	  /* we only update meta predictor if directions were different */
-	  if (dir_update_ptr->dir.twolev == (unsigned int)taken)
-	    {
-	      /* 2-level predictor was correct */
-	      if (*dir_update_ptr->pmeta < 3)
-		++*dir_update_ptr->pmeta;
-	    }
-	  else
-	    {
-	      /* bimodal predictor was correct */
-	      if (*dir_update_ptr->pmeta > 0)
-		--*dir_update_ptr->pmeta;
-	    }
-	}
+      {
+    /* we only update meta predictor if directions were different */
+        if (dir_update_ptr->dir.twolev == (unsigned int)taken)
+        {
+          /* 2-level predictor was correct */
+          if (*dir_update_ptr->pmeta < 3)
+            ++*dir_update_ptr->pmeta;
+        }
+        else
+        {
+          /* bimodal predictor was correct */
+          if (*dir_update_ptr->pmeta > 0)
+            --*dir_update_ptr->pmeta;
+        }
+      }
     }
+  }
 /*************************************************************************************************/
    if (dir_update_lab4->pmeta)
      {
