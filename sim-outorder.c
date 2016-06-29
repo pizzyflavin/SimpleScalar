@@ -128,7 +128,10 @@ static int comb_nelt = 1;
 static int comb_config[1] =
   { /* meta_table_size */1024 };
 
-/* lab4 predictor config (<met_table_)
+/* lab4 predictor config (<meta_table_size>) */
+static int lab4_nelt = 1;
+static int lab4_config[1] =
+  { /* meta_table_size */1024};
 
 /* return address stack (RAS) size */
 static int ras_size = 8;
