@@ -596,6 +596,7 @@ bpred_lookup(struct bpred_t *pred,	/* branch predictor instance */
       if ((MD_OP_FLAGS(op) & (F_CTRL|F_UNCOND)) != (F_CTRL|F_UNCOND))
 	{
 	  char *bimod, *twolev, *meta;
+
 	  bimod = bpred_dir_lookup (pred->dirpred.bimod, baddr);
 	  twolev = bpred_dir_lookup (pred->dirpred.twolev, baddr);
 	  meta = bpred_dir_lookup (pred->dirpred.meta, baddr);
@@ -615,6 +616,33 @@ bpred_lookup(struct bpred_t *pred,	/* branch predictor instance */
 	    }
 	}
       break;
+
+    case BPred_lab4:
+      if ((MD_OP_FLAGS(op) & (F_CTRL|F_UNCOND)) != (F_CTRL|F_UNCOND))
+  {
+    char *bimod, *bimod2, *meta;
+
+    bimod = bpred_dir_lookup (pred->dirpred.bimod, baddr);
+    bimod2 = bpred_dir_lookup (pred->dirpred.bimod2, baddr)
+    meta = bpred_dir_lookup (pred->dirpred.meta, baddr);
+    dir_update_ptr->pmeta = meta;
+    dir_update_ptr->dir.meta  = (*meta >= 2);
+    dir_update_ptr->dir.bimod = (*bimod >= 2);
+    dir_update_ptr->dir.bimod2 = (*bimod2 >= 2);
+
+    if (*meta >= 2)
+      {
+        dir_update_ptr->pdir1 = bimod;
+        dir_update_ptr->pdir2 = bimod2;
+      }
+    else
+      {
+        dir_update_ptr->pdir1 = bimod;
+        dir_update_ptr->pdir2 = bimod2;
+      }
+  }
+      break;
+
     case BPred2Level:
       if ((MD_OP_FLAGS(op) & (F_CTRL|F_UNCOND)) != (F_CTRL|F_UNCOND))
 	{
