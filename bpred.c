@@ -107,7 +107,9 @@ bpred_create(enum bpred_class class,	/* type of predictor to create */
     pred->dirpred.bimod = 
       bpred_dir_create(BPred2bit, bimod_size, 0, 0, 0);
 
-    /* Global Component*/
+    /* metapredictor Component*/
+    pred->dirpred.meta = 
+      bpred_dir_create(BPred2Bit, meta_size, 0, 0, 0);:
 
   case BPred2Level:
     pred->dirpred.twolev = 
