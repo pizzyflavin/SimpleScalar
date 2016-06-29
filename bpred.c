@@ -98,6 +98,17 @@ bpred_create(enum bpred_class class,	/* type of predictor to create */
 
     break;
 
+  case BPred_lab4:
+    /* 2-level component */
+    pred->dirpred.twolev = 
+      bpred_dir_create(BPred2Level, l1size, l2size, shift_width, xor);
+
+    /* bimodal component*/
+    pred->dirpred.bimod = 
+      bpred_dir_create(BPred2bit, bimod_size, 0, 0, 0);
+
+    /* Global Component*/
+
   case BPred2Level:
     pred->dirpred.twolev = 
       bpred_dir_create(class, l1size, l2size, shift_width, xor);
