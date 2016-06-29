@@ -123,6 +123,12 @@ struct bpred_dir_t {
       unsigned int size;	/* number of entries in direct-mapped table */
       unsigned char *table;	/* prediction state table */
     } bimod;
+/***********************************************************************************/
+    struct {
+      unsigned int size = 2048;
+      unsigned char *table;
+    }bimod2;
+/***********************************************************************************/
     struct {
       int l1size;		/* level-1 size, number of history regs */
       int l2size;		/* level-2 size, number of pred states */
