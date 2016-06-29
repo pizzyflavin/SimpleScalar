@@ -990,6 +990,27 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
 			  /* btb assoc */btb_config[1],
 			  /* ret-addr stack size */ras_size);
     }
+  else if (!mystricmp(pred_type, "lab4"))
+    {
+      /* lab4 (combines two bimodal) predictor, bpred_create() checks args */
+      if (bimod_nelt != 1)
+  fatal("bad bimod predictor config (<table_size>)");
+      if (lab4_nelt != 1)
+  fatal("bad lab4 predictor config (<meta_table_size>)");
+      if (btb_nelt != 2)
+  fatal("bad btb config (<num_sets> <associativity>)");
+
+      pred = bpred_create(BPred_lab4,
+        /* bimod table size */ bimod_config[0],
+        /* l1 size */             0,
+        /* l2 size */             0,
+        /* meta table size */     0,
+        /* history reg size */    0,
+        /* history xor address */ 0,
+        /* btb sets */            btb_config[0],
+        /* btb assoc */           btb_config[1],
+        /* ret-addr stack size */ ras_size);
+    }
   else
     fatal("cannot parse predictor type `%s'", pred_type);
 
