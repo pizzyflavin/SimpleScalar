@@ -128,7 +128,7 @@ struct bpred_dir_t {
     struct {
       unsigned int size = 2048;
       unsigned char *table;
-    }bimod2;
+    } bimod2;
 /***********************************************************************************/
     struct {
       int l1size;		/* level-1 size, number of history regs */
