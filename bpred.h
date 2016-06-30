@@ -146,6 +146,7 @@ struct bpred_t {
   enum bpred_class class;	/* type of predictor */
   struct {
     struct bpred_dir_t *bimod;	  /* first direction predictor */
+    struct bpred_dir_t *bmod2;
     struct bpred_dir_t *twolev;	  /* second direction predictor */
     struct bpred_dir_t *meta;	  /* meta predictor */
   } dirpred;
@@ -188,6 +189,7 @@ struct bpred_update_t {
   struct {		/* predicted directions */
     unsigned int ras    : 1;	/* RAS used */
     unsigned int bimod  : 1;    /* bimodal predictor */
+    unsigned int bimod2 : 1;
     unsigned int twolev : 1;    /* 2-level predictor */
     unsigned int meta   : 1;    /* meta predictor (0..bimod / 1..2lev) */
   } dir;
